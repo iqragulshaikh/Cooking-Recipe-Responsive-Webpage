@@ -1,0 +1,399 @@
+/* ==========================================================================
+   1. COLOR COMBO VARIABLES & GLOBAL CONFIGURATION
+   ========================================================================== */
+:root {
+  /* Brand System: Saffron & Sage Palette */
+  --bg-cream: #FAF7F2;        /* Alabaster Cream background */
+  --text-smoke: #333333;      /* High contrast charcoal text */
+  --accent-sage: #2C3E35;     /* Deep Velvet Sage Green */
+  --accent-saffron: #E07A5F;  /* Warm Toasted Saffron Terracotta */
+  --card-white: #FFFFFF;      /* Solid clean card backgrounds */
+  
+  /* Typography Hierarchy */
+  --font-ui: 'Plus Jakarta Sans', sans-serif;
+  --font-editorial: 'DM Serif Display', Georgia, serif;
+}
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-ui);
+  background-color: var(--bg-cream);
+  color: var(--text-smoke);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ==========================================================================
+   2. MOBILE CORE DESIGN SYSTEM
+   ========================================================================== */
+
+.navbar {
+  background-color: rgba(255, 255, 255, 0.96);
+  padding: 1.2rem 1.5rem;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  border-bottom: 1px solid rgba(44, 62, 53, 0.06);
+  backdrop-filter: blur(8px);
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-family: var(--font-ui);
+  font-weight: 800;
+  font-size: 1.25rem;
+  color: var(--accent-sage);
+  text-decoration: none;
+  letter-spacing: -0.5px;
+}
+
+.logo-icon {
+  margin-right: 4px;
+}
+
+/* Sidebar Flyout Menu */
+.nav-links {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 80% !important;
+  height: 100vh;
+  background-color: var(--accent-sage);
+  display: flex;
+  flex-direction: column;
+  padding: 7rem 2.5rem;
+  list-style: none;
+  transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: -10px 0 30px rgba(0, 0, 0, 0.1);
+}
+
+.nav-links li {
+  margin-bottom: 2.2rem;
+}
+
+.nav-links a {
+  color: #FFFFFF;
+  text-decoration: none;
+  font-size: 1.35rem;
+  font-weight: 600;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--accent-saffron);
+}
+
+/* Hamburger Mechanics */
+.hamburger-btn {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 22px;
+  height: 16px;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+.hamburger-btn .bar {
+  width: 100%;
+  height: 2px;
+  background-color: var(--accent-sage);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transform-origin: left;
+}
+
+.menu-toggle {
+  display: none;
+}
+
+.menu-toggle:checked ~ .nav-links {
+  right: 0;
+}
+
+.menu-toggle:checked ~ .hamburger-btn .bar:nth-child(1) {
+  transform: rotate(45deg);
+  background-color: #FFFFFF;
+}
+.menu-toggle:checked ~ .hamburger-btn .bar:nth-child(2) {
+  opacity: 0;
+}
+.menu-toggle:checked ~ .hamburger-btn .bar:nth-child(3) {
+  transform: rotate(-45deg);
+  background-color: #FFFFFF;
+}
+
+/* Hero Section */
+.hero-section {
+  background-color: var(--accent-sage);
+  background-image: linear-gradient(135deg, #23322a 0%, #17221c 100%);
+  padding: 5rem 1.5rem;
+  color: #FFFFFF;
+  text-align: center;
+}
+
+.hero-container {
+  max-width: 650px;
+  margin: 0 auto;
+}
+
+.badge {
+  font-size: 0.75rem;
+  font-weight: 700;
+  background-color: rgba(224, 122, 95, 0.15);
+  color: var(--accent-saffron);
+  padding: 0.4rem 1rem;
+  border-radius: 4px;
+  display: inline-block;
+  margin-bottom: 1.5rem;
+  letter-spacing: 1px;
+  border: 1px solid rgba(224, 122, 95, 0.3);
+}
+
+.hero-section h1 {
+  font-family: var(--font-editorial);
+  font-size: 2.5rem;
+  font-weight: 400;
+  line-height: 1.15;
+  margin-bottom: 1.2rem;
+}
+
+.hero-section p {
+  font-size: 1rem;
+  color: #D1DCD6;
+  margin-bottom: 2rem;
+}
+
+.hero-btn {
+  display: inline-block;
+  background-color: var(--accent-saffron);
+  color: #FFFFFF;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.95rem;
+  padding: 0.85rem 2rem;
+  border-radius: 4px;
+  transition: transform 0.2s, background-color 0.2s;
+}
+
+.hero-btn:hover {
+  background-color: #cb654b;
+  transform: translateY(-2px);
+}
+
+/* Main Content Layout */
+.main-layout {
+  padding: 3rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.split-card {
+  background-color: var(--card-white);
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 20px rgba(44, 62, 53, 0.03);
+  border: 1px solid rgba(44, 62, 53, 0.04);
+}
+
+.card-visual {
+  height: 250px;
+  width: 100%;
+}
+
+/* Sophisticated solid warm gradient blocks to stand in beautifully for real food images */
+.img-chicken {
+  background: linear-gradient(135deg, #e3b074, #c98a44);
+}
+.img-apple {
+  background: linear-gradient(135deg, #d37a5a, #a64b2a);
+}
+
+.card-content {
+  padding: 2.5rem 1.5rem;
+}
+
+.card-title {
+  font-family: var(--font-editorial);
+  font-size: 1.8rem;
+  color: var(--accent-sage);
+  margin-bottom: 0.8rem;
+  font-weight: 400;
+}
+
+.card-description {
+  font-size: 0.95rem;
+  color: #555555;
+  margin-bottom: 1.5rem;
+}
+
+.recipe-meta {
+  display: flex;
+  gap: 1.5rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--accent-sage);
+  margin-bottom: 1.5rem;
+  opacity: 0.85;
+}
+
+.action-link {
+  display: inline-block;
+  color: var(--accent-saffron);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.action-link span {
+  transition: margin-left 0.2s;
+}
+
+.action-link:hover span {
+  margin-left: 6px;
+}
+
+/* Footer Section */
+.footer-platform {
+  background-color: var(--accent-sage);
+  color: #D1DCD6;
+  padding: 4rem 1.5rem;
+  text-align: center;
+  font-size: 0.9rem;
+  border-top: 5px solid var(--accent-saffron);
+}
+
+.footer-brand {
+  font-weight: bold;
+  color: #FFFFFF;
+  margin-bottom: 0.5rem;
+}
+
+.footer-credit {
+  font-size: 0.8rem;
+  opacity: 0.6;
+}
+
+/* ==========================================================================
+   3. TABLET LAYOUT ENGINE
+   ========================================================================== */
+@media (min-width: 768px) {
+  .hamburger-btn {
+    display: none;
+  }
+  
+  .nav-links {
+    position: static;
+    width: auto !important;
+    height: auto;
+    background-color: transparent;
+    flex-direction: row;
+    padding: 0;
+    box-shadow: none;
+  }
+  
+  .nav-links li {
+    margin-bottom: 0;
+    margin-left: 2rem;
+  }
+  
+  .nav-links a {
+    color: var(--accent-sage);
+    font-size: 0.95rem;
+  }
+  
+  .hero-section {
+    padding: 8rem 2rem;
+  }
+  
+  .hero-section h1 {
+    font-size: 3.6rem;
+  }
+  
+  .main-layout {
+    max-width: 740px;
+    margin: 0 auto;
+    padding: 5rem 0;
+    gap: 4.5rem;
+  }
+  
+  .split-card {
+    flex-direction: row;
+    min-height: 360px;
+  }
+  
+  .split-card.layout-reverse {
+    flex-direction: row-reverse;
+  }
+  
+  .card-visual {
+    width: 45%;
+    height: auto;
+  }
+  
+  .card-content {
+    width: 55%;
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+
+/* ==========================================================================
+   4. DESKTOP MONITOR LAYER
+   ========================================================================== */
+@media (min-width: 1024px) {
+  .main-layout {
+    max-width: 1050px;
+  }
+  
+  .split-card {
+    min-height: 400px;
+  }
+  
+  .card-content {
+    padding: 4rem;
+  }
+  
+  .card-title {
+    font-size: 2.2rem;
+    margin-bottom: 1.2rem;
+  }
+}
+.recipe-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;   /* This prevents the food image from stretching ugly or squeezing */
+  display: block;
+}
+.logo {
+  display: flex;
+  align-items: center; /* Centers the logo image vertically with the text */
+  gap: 8px;            /* Adds a nice clean gap between the image and the text */
+  text-decoration: none;
+}
+
+.logo-img {
+  height: 50px;        /* Restricts the height to match the navbar scale nicely */
+  width: auto;         /* Automatically calculates the correct width so it doesn't stretch */
+  object-fit: contain;
+}
